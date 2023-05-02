@@ -1,0 +1,74 @@
+.homePage {
+	min-height: 100vh;
+}
+
+.homePageContainer {
+	min-height: 100vh;
+	padding: 0 10px;
+	margin-bottom: 200px;
+}
+
+.courseBox {
+	display: flex;
+	padding: 20px 0px;
+	border-bottom: 1px solid #e6e6e6;
+}
+
+.courseBox:last-of-type {
+	border: unset;
+	padding-bottom: unset;
+}
+
+.courseImg {
+	width: 400px;
+	height: 400px;
+	border-radius: 10px;
+	object-fit: cover;
+	aspect-ratio: 1/1;
+}
+
+.courseDetails {
+	margin-left: 30px;
+}
+
+.title {
+	font-size: 40px;
+	font-weight: bold;
+}
+
+.aboutCourse {
+	font-size: 20px;
+	font-weight: 500;
+}
+
+.coursePrice {
+	font-size: 50px;
+	font-weight: bold;
+}
+
+.courseLink {
+	margin-bottom: 10px;
+}
+
+/* ------------M-web----------- */
+@media screen and (max-width: 1000px) {
+	.courseBox {
+		display: block;
+		text-align: center;
+	}
+
+	.courseDetails {
+		margin: unset;
+	}
+
+	.aboutCourse {
+		font-size: 18px;
+		/* text-align: left; */
+	}
+}
+
+@media screen and (max-width: 550px) {
+	.courseImg {
+		width: 90%;
+	}
+}

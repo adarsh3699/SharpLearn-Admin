@@ -1,0 +1,145 @@
+.modal {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: rgba(54, 54, 54, 0.95);
+	outline: unset;
+	width: 90%;
+	height: 90%;
+	border-radius: 8px;
+	overflow: auto;
+	padding-bottom: 100px;
+}
+
+#elementBox {
+	/* background-color: rgba(102, 51, 153, 0.506); */
+	padding: 10px 0;
+	width: 100%;
+	overflow: auto;
+	height: 88%;
+}
+
+.modalHeader {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px 20px;
+	background-color: rgba(102, 51, 153, 0.506);
+}
+
+.modalCourseBox {
+	/* overflow: auto; */
+}
+
+.courseImgAndName {
+	display: flex;
+	margin: 15px 0 0 15px;
+}
+
+.modalCourseImg {
+	height: 300px;
+	width: 300px;
+	object-fit: cover;
+}
+
+.courseNameAndPrice {
+	width: 100%;
+	margin-left: 15px;
+}
+
+.courseType {
+	margin-bottom: 10px;
+}
+
+.courseTypeInput {
+	width: calc(90% - 20px);
+	font-size: 20px;
+	font-weight: bold;
+	padding: 5px 10px;
+	margin-bottom: 10px;
+}
+
+.courseTitleInput,
+.coursePriceInput {
+	width: calc(90% - 20px);
+	font-size: 20px;
+	font-weight: bold;
+	padding: 5px 10px;
+	margin-bottom: 10px;
+}
+
+.coursePriceInput::-webkit-inner-spin-button,
+.coursePriceInput::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.courseThumbnailInput {
+	font-size: unset;
+}
+
+.aboutCourseInput {
+	width: calc(90% - 20px);
+	min-height: 150px;
+	padding: 5px 10px;
+	font-family: unset;
+	font-size: 15px;
+	resize: vertical;
+}
+
+.demoVideoLinkInput {
+	width: calc(90% - 20px);
+	padding: 5px 10px;
+	font-size: 15px;
+	margin-bottom: 10px;
+}
+
+.courseLinkInput {
+	width: calc(90% - 20px);
+	padding: 5px 10px;
+	font-size: 15px;
+	margin-bottom: 10px;
+}
+
+@media screen and (max-width: 1000px) {
+	.modalCourseBox {
+		text-align: center;
+	}
+
+	.courseImgAndName {
+		display: block;
+		margin: unset;
+	}
+
+	.courseNameAndPrice {
+		margin: unset;
+	}
+}
+
+@media screen and (max-width: 400px) {
+	.modal {
+		width: 95%;
+		height: 80%;
+	}
+}
+
+@media screen and (max-height: 650px) and (min-height: 500px) {
+	#elementBox {
+		height: 84%;
+	}
+}
+
+@media screen and (max-height: 500px) {
+	#elementBox {
+		height: 80%;
+	}
+}
+
+@media screen and (max-height: 400px) {
+	.modal {
+		height: 95%;
+	}
+}
