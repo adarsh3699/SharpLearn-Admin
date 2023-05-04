@@ -118,10 +118,21 @@ function addNewCourse(incomingData, imageFileRef, setIsNotesModalOpen, setIsAddB
 	} else {
 		addDoc(colRef, { ...incomingData, updatedOn: serverTimestamp(), createdOn: serverTimestamp() })
 			.then((e) => {
-				console.log('Course added Successfully');
-				setIsNotesModalOpen(false);
-				setIsAddBtnLoading(false);
-				handleMsgShown('Course Added Successfully', 'success');
+				const newCourseId = e?.id;
+
+				const docRef = doc(database, 'All_Courses', newCourseId);
+				updateDoc(docRef, { courseId: newCourseId })
+					.then(() => {
+						console.log('Course added Successfully');
+						setIsNotesModalOpen(false);
+						setIsAddBtnLoading(false);
+						handleMsgShown('Course Added Successfully', 'success');
+					})
+					.catch((err) => {
+						handleMsgShown(err.code, 'error');
+						setIsAddBtnLoading(false);
+						console.log(err.message);
+					});
 			})
 			.catch((err) => {
 				setIsAddBtnLoading(false);
