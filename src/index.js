@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import Routes from './routes';
 import { BrowserRouter } from 'react-router-dom';
-import { app } from './firebase/initFirebase';
+import './firebase/initFirebase';
 
 import './styles/index.css';
 
