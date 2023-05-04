@@ -14,7 +14,6 @@ import '../styles/homePage.css';
 
 import photoNotAvailable from '../images/photoNotAvailable.jpeg';
 
-import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 
 function HomePage() {
@@ -107,7 +106,7 @@ function HomePage() {
 							<div className="courseDetails">
 								<div className="title">{item?.courseName}</div>
 								<div className="aboutCourse">{item?.aboutCourse}</div>
-								<div className="coursePrice">₹{item?.coursePrice}</div>
+								<div className="coursePrice">₹{item?.courseDiscountedPrice}</div>
 								<div className="demoVideoLink">{item?.demoVideo}</div>
 								<div className="courseLink">{item?.courseLink}</div>
 								<MuiBtn

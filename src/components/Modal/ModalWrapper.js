@@ -3,6 +3,7 @@ import Modal from '@mui/material/Modal';
 
 import Button from '@mui/material/Button';
 import MuiBtn from '../EnrollBtn/MuiBtn';
+import TextField from '@mui/material/TextField';
 
 import photoNotAvailable from '../../images/photoNotAvailable.jpeg';
 
@@ -64,26 +65,38 @@ function ModalWrapper({
 									<br />
 								</>
 							)}
-							<input
-								type="text"
+							<TextField
+								label="Course Name"
 								className="courseTitleInput"
-								placeholder="Course Name"
+								required
+								variant="outlined"
 								name="courseName"
-								required={true}
+								autoComplete="off"
 								value={OpenCourse?.courseName || ''}
 								onChange={handleCourseInputChange}
-							/>{' '}
-							<br />
-							<input
+							/> <br />
+							<TextField
 								type="number"
+								label="ORG Price"
+								name="courseORGPrice"
 								className="coursePriceInput"
-								placeholder="Course Price"
-								name="coursePrice"
-								required={true}
-								value={OpenCourse?.coursePrice || ''}
+								required
+								variant="outlined"
+								autoComplete="off"
+								value={OpenCourse?.courseORGPrice || ''}
 								onChange={handleCourseInputChange}
-							/>{' '}
-							<br />
+							/><br />
+							<TextField
+								type="number"
+								label="Discounted Price"
+								name="courseDiscountedPrice"
+								className="coursePriceInput"
+								required
+								variant="outlined"
+								autoComplete="off"
+								value={OpenCourse?.courseDiscountedPrice || ''}
+								onChange={handleCourseInputChange}
+							/><br />
 							<input
 								type="file"
 								className="courseThumbnailInput"
@@ -95,8 +108,8 @@ function ModalWrapper({
 							/>
 						</div>
 					</div>
-					<div className="courseDetails">
-						<br />
+					<div className="courseDetailsInputArea">
+
 						<textarea
 							className="aboutCourseInput"
 							placeholder="About Course"
@@ -106,18 +119,16 @@ function ModalWrapper({
 							onChange={handleCourseInputChange}
 						/>
 						<br />
-						<input
-							type="text"
+						<TextField
+							label="Demo Video Link"
 							className="demoVideoLinkInput"
 							name="demoVideo"
-							placeholder="Demo Video Link"
 							required={true}
 							value={OpenCourse?.demoVideo || ''}
 							onChange={handleCourseInputChange}
 						/>
 						<br />
-						<input
-							type="text"
+						<TextField
 							className="courseLinkInput"
 							name="courseLink"
 							placeholder="Course Link"

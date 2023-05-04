@@ -20,7 +20,7 @@ import { ref, uploadBytesResumable, deleteObject, getDownloadURL } from 'firebas
 
 const database = getFirestore();
 // collection ref
-const colRef = collection(database, 'CS-Courses');
+const colRef = collection(database, 'All_Courses');
 
 // const userId = JSON.parse(localStorage.getItem('user_details'))?.userId || '';
 
@@ -39,7 +39,8 @@ function getUserAllNoteData(setAllCourses, setIsGetLoading, handleMsgShown) {
 							courseThumbnail: doc.data()?.courseThumbnail,
 							courseName: doc.data()?.courseName,
 							aboutCourse: doc.data()?.aboutCourse,
-							coursePrice: doc.data()?.coursePrice,
+							courseORGPrice: doc.data()?.courseORGPrice,
+							courseDiscountedPrice: doc.data()?.courseDiscountedPrice,
 							courseType: doc.data()?.courseType,
 							demoVideo: doc.data()?.demoVideo,
 							courseLink: doc.data()?.courseLink,
@@ -65,27 +66,25 @@ function getUserAllNoteData(setAllCourses, setIsGetLoading, handleMsgShown) {
 
 // //Add Notes
 function addNewCourse(incomingData, imageFileRef, setIsNotesModalOpen, setIsAddBtnLoading, handleMsgShown) {
-	const { courseName, aboutCourse, courseType, coursePrice, demoVideo, courseLink } = incomingData;
-	if (!courseName || !aboutCourse || !courseType || !coursePrice || !demoVideo || !courseLink) {
+	const { courseName, aboutCourse, courseType, courseORGPrice, courseDiscountedPrice, demoVideo, courseLink } = incomingData;
+	if (!courseName || !aboutCourse || !courseType || !courseORGPrice || !courseDiscountedPrice || !demoVideo || !courseLink) {
 		handleMsgShown('Please Provide all details', 'error');
 		console.log('Please Provide all details');
 		return;
 	}
 	setIsAddBtnLoading(true);
-	const NewColRef = collection(database, courseType);
-
 	if (imageFileRef) {
-		addDoc(NewColRef, { ...incomingData, updatedOn: serverTimestamp(), createdOn: serverTimestamp() })
+		addDoc(colRef, { ...incomingData, updatedOn: serverTimestamp(), createdOn: serverTimestamp() })
 			.then((e) => {
 				const newCourseId = e?.id;
-				const imageRef = ref(storage, courseType + '/' + newCourseId + '_' + courseType + '_thumbnail');
+				const imageRef = ref(storage, 'All_Courses/' + newCourseId + '_' + courseType + '_thumbnail');
+
 
 				uploadBytesResumable(imageRef, imageFileRef)
 					.then((snapshot) => {
 						getDownloadURL(snapshot.ref)
 							.then((downloadURL) => {
-								const docRef = doc(database, courseType, newCourseId);
-
+								const docRef = doc(database, 'All_Courses', newCourseId);
 								updateDoc(docRef, { courseThumbnail: downloadURL })
 									.then(() => {
 										console.log('Course added Successfully');
@@ -117,7 +116,7 @@ function addNewCourse(incomingData, imageFileRef, setIsNotesModalOpen, setIsAddB
 				console.log(err);
 			});
 	} else {
-		addDoc(NewColRef, { ...incomingData, updatedOn: serverTimestamp(), createdOn: serverTimestamp() })
+		addDoc(colRef, { ...incomingData, updatedOn: serverTimestamp(), createdOn: serverTimestamp() })
 			.then((e) => {
 				console.log('Course added Successfully');
 				setIsNotesModalOpen(false);
@@ -133,17 +132,17 @@ function addNewCourse(incomingData, imageFileRef, setIsNotesModalOpen, setIsAddB
 }
 
 //delete course
-function deleteData(CourseId, courseType, setIsNotesModalOpen, setMsg, handleMsgShown) {
-	if (!CourseId || !courseType) {
+function deleteData(courseId, courseType, setIsNotesModalOpen, setMsg, handleMsgShown) {
+	if (!courseId || !courseType) {
 		handleMsgShown('Please Provide all details', 'error');
 		console.log('Please Provide all details');
 		return;
 	}
-	const docRef = doc(database, courseType, CourseId);
+	const docRef = doc(database, 'All_Courses', courseId);
 
 	deleteDoc(docRef)
 		.then((e) => {
-			const desertRef = ref(storage, courseType + '/' + CourseId + '_' + courseType + '_thumbnail');
+			const desertRef = ref(storage, 'All_Courses/' + courseId + '_' + courseType + '_thumbnail');
 			setIsNotesModalOpen(false);
 			deleteObject(desertRef).then(() => {
 				console.log('File deleted successfully');
@@ -160,13 +159,14 @@ function deleteData(CourseId, courseType, setIsNotesModalOpen, setMsg, handleMsg
 
 //update course
 function updateCourseDetails(incomingData, imageFileRef, setIsSaveLoading, handleMsgShown) {
-	const { courseId, courseName, courseType, aboutCourse, coursePrice, demoVideo, courseLink } = incomingData;
+	const { courseId, courseName, courseType, aboutCourse, courseORGPrice, courseDiscountedPrice, demoVideo, courseLink } = incomingData;
 	if (
 		!courseId ||
 		!courseName ||
 		!courseType ||
 		!aboutCourse ||
-		!coursePrice ||
+		!courseORGPrice ||
+		!courseDiscountedPrice ||
 		!demoVideo ||
 		!courseLink
 	) {
@@ -175,10 +175,10 @@ function updateCourseDetails(incomingData, imageFileRef, setIsSaveLoading, handl
 		return;
 	}
 	setIsSaveLoading(true);
-	const docRef = doc(database, 'CS-Courses', courseId);
+	const docRef = doc(database, 'All_Courses', courseId);
 
 	if (imageFileRef) {
-		const imageRef = ref(storage, 'CS-Courses/' + courseId + '_' + courseType + '_thumbnail');
+		const imageRef = ref(storage, 'All_Courses/' + courseId + '_' + courseType + '_thumbnail');
 
 		uploadBytesResumable(imageRef, imageFileRef)
 			.then((snapshot) => {

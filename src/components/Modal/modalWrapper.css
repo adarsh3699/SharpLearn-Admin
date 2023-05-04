@@ -3,21 +3,12 @@
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
-	background: rgba(54, 54, 54, 0.95);
+	background: rgba(54, 54, 54);
 	outline: unset;
 	width: 90%;
 	height: 90%;
 	border-radius: 8px;
-	overflow: auto;
-	padding-bottom: 100px;
-}
-
-#elementBox {
-	/* background-color: rgba(102, 51, 153, 0.506); */
-	padding: 10px 0;
-	width: 100%;
-	overflow: auto;
-	height: 88%;
+	overflow: hidden;
 }
 
 .modalHeader {
@@ -29,7 +20,10 @@
 }
 
 .modalCourseBox {
-	/* overflow: auto; */
+	width: 100%;
+	overflow: auto;
+	height: calc(100% - 60px);
+	padding-bottom: 100px;
 }
 
 .courseImgAndName {
@@ -61,52 +55,58 @@
 }
 
 .courseTitleInput,
-.coursePriceInput {
+.coursePriceInput,
+.demoVideoLinkInput,
+.courseLinkInput {
 	width: calc(90% - 20px);
-	font-size: 20px;
-	font-weight: bold;
-	padding: 5px 10px;
-	margin-bottom: 10px;
-}
-
-.coursePriceInput::-webkit-inner-spin-button,
-.coursePriceInput::-webkit-outer-spin-button {
-	-webkit-appearance: none;
-	-webkit-appearance: none;
-	-moz-appearance: none;
-	appearance: none;
+	margin-bottom: 10px !important;
 }
 
 .courseThumbnailInput {
 	font-size: unset;
+	margin: 10px 0;
 }
 
-.aboutCourseInput {
-	width: calc(90% - 20px);
+.courseDetailsInputArea {
 	min-height: 150px;
-	padding: 5px 10px;
+	margin: 15px;
 	font-family: unset;
 	font-size: 15px;
 	resize: vertical;
 }
 
-.demoVideoLinkInput {
+.aboutCourseInput {
 	width: calc(90% - 20px);
-	padding: 5px 10px;
-	font-size: 15px;
+	border-radius: 3.5px;
+	min-height: 150px;
 	margin-bottom: 10px;
+	background-color: unset;
+	color: white;
+	padding: 5px 10px;
+	font-family: unset;
+	font-size: 16px;
+	resize: vertical;
 }
 
-.courseLinkInput {
-	width: calc(90% - 20px);
-	padding: 5px 10px;
-	font-size: 15px;
-	margin-bottom: 10px;
+.aboutCourseInput:hover {
+	border-color: white;
 }
 
 @media screen and (max-width: 1000px) {
 	.modalCourseBox {
 		text-align: center;
+	}
+
+	.courseTitleInput,
+	.coursePriceInput,
+	.demoVideoLinkInput,
+	.courseLinkInput,
+	.aboutCourseInput {
+		width: calc(100% - 20px);
+	}
+
+	.courseDetailsInputArea {
+		margin: 10px 0 0 0;
 	}
 
 	.courseImgAndName {
@@ -122,7 +122,7 @@
 @media screen and (max-width: 400px) {
 	.modal {
 		width: 95%;
-		height: 80%;
+		height: 85%;
 	}
 }
 
