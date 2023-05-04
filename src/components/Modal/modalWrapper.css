@@ -43,14 +43,16 @@
 }
 
 .courseType {
-	margin-bottom: 10px;
+	margin-bottom: 15px;
+	font-size: 20px;
+	font-weight: bold;
 }
 
 .courseTypeInput {
 	width: calc(90% - 20px);
-	font-size: 20px;
-	font-weight: bold;
-	padding: 5px 10px;
+	/* font-size: 20px; */
+	/* font-weight: bold; */
+	/* padding: 5px 10px; */
 	margin-bottom: 10px;
 }
 
@@ -101,7 +103,8 @@
 	.coursePriceInput,
 	.demoVideoLinkInput,
 	.courseLinkInput,
-	.aboutCourseInput {
+	.aboutCourseInput,
+	.courseTypeInput {
 		width: calc(100% - 20px);
 	}
 

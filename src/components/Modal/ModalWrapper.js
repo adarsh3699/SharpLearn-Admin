@@ -4,6 +4,8 @@ import Modal from '@mui/material/Modal';
 import Button from '@mui/material/Button';
 import MuiBtn from '../EnrollBtn/MuiBtn';
 import TextField from '@mui/material/TextField';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
 
 import photoNotAvailable from '../../images/photoNotAvailable.jpeg';
 
@@ -52,17 +54,22 @@ function ModalWrapper({
 								<div className="courseType"> {OpenCourse?.courseType || 'N/A'}</div>
 							) : (
 								<>
-									<select
+									<Select
+										label="Course Type"
+										labelId="demo-simple-select-label"
+										id="demo-simple-select"
 										className="courseTypeInput"
 										name="courseType"
+										value={OpenCourse?.courseType || ''}
+										placeholder='jk'
 										onChange={handleCourseInputChange}
 									>
-										<option value=""></option>
-										<option value="CS-Courses">CS-Course</option>
-										{/* <option value="JEE">JEE</option>
-										<option value="NEET">NEET</option> */}
-									</select>
+										<MenuItem value="CS-Courses">CS-Course</MenuItem>
+										<MenuItem value="JEE">JEE</MenuItem>
+										<MenuItem value="NEET">NEET</MenuItem>
+									</Select>
 									<br />
+
 								</>
 							)}
 							<TextField
