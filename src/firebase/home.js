@@ -85,7 +85,7 @@ function addNewCourse(incomingData, imageFileRef, setIsNotesModalOpen, setIsAddB
 						getDownloadURL(snapshot.ref)
 							.then((downloadURL) => {
 								const docRef = doc(database, 'All_Courses', newCourseId);
-								updateDoc(docRef, { courseThumbnail: downloadURL })
+								updateDoc(docRef, { courseThumbnail: downloadURL, courseId: newCourseId })
 									.then(() => {
 										console.log('Course added Successfully');
 										setIsNotesModalOpen(false);
