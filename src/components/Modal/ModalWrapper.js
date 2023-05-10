@@ -65,6 +65,7 @@ function ModalWrapper({
 										onChange={handleCourseInputChange}
 									>
 										<MenuItem value="CS-Courses">CS-Courses</MenuItem>
+										<MenuItem value="Hacking">Hacking</MenuItem>
 										<MenuItem value="Video Editing">Video Editing</MenuItem>
 										<MenuItem value="Photo Editing">Photo Editing</MenuItem>
 										<MenuItem value="JEE">JEE</MenuItem>

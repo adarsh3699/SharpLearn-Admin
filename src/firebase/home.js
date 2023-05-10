@@ -77,10 +77,12 @@ function addNewCourse(incomingData, imageFileRef, setIsNotesModalOpen, setIsAddB
 		addDoc(colRef, { ...incomingData, updatedOn: serverTimestamp(), createdOn: serverTimestamp() })
 			.then((e) => {
 				const newCourseId = e?.id;
-				const imageRef = ref(storage, 'All_Courses/' + newCourseId + '_' + courseType + '_thumbnail');
+				const desertRef = ref(storage, courseType + '/' + newCourseId + '_' + courseType + '_thumbnail');
 
 
-				uploadBytesResumable(imageRef, imageFileRef)
+
+
+				uploadBytesResumable(desertRef, imageFileRef)
 					.then((snapshot) => {
 						getDownloadURL(snapshot.ref)
 							.then((downloadURL) => {
@@ -153,7 +155,7 @@ function deleteData(courseId, courseType, setIsNotesModalOpen, setMsg, handleMsg
 
 	deleteDoc(docRef)
 		.then((e) => {
-			const desertRef = ref(storage, 'All_Courses/' + courseId + '_' + courseType + '_thumbnail');
+			const desertRef = ref(storage, courseType + '/' + courseId + '_' + courseType + '_thumbnail');
 			setIsNotesModalOpen(false);
 			deleteObject(desertRef).then(() => {
 				console.log('File deleted successfully');
@@ -189,9 +191,9 @@ function updateCourseDetails(incomingData, imageFileRef, setIsSaveLoading, handl
 	const docRef = doc(database, 'All_Courses', courseId);
 
 	if (imageFileRef) {
-		const imageRef = ref(storage, 'All_Courses/' + courseId + '_' + courseType + '_thumbnail');
+		const desertRef = ref(storage, courseType + '/' + courseId + '_' + courseType + '_thumbnail');
 
-		uploadBytesResumable(imageRef, imageFileRef)
+		uploadBytesResumable(desertRef, imageFileRef)
 			.then((snapshot) => {
 				console.log('Uploaded successfully a blob or file!');
 
