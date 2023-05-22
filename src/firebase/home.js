@@ -22,6 +22,8 @@ const database = getFirestore();
 // collection ref
 const colRef = collection(database, 'All_Courses');
 
+const photoNotAvailable = 'https://firebasestorage.googleapis.com/v0/b/sharplearn-2fe87.appspot.com/o/photoNotAvailable.jpeg?alt=media&token=18505eb6-80ee-4e9a-b81b-8a1a84c6e23d'
+
 // const userId = JSON.parse(localStorage.getItem('user_details'))?.userId || '';
 
 function getUserAllNoteData(setAllCourses, setIsGetLoading, handleMsgShown) {
@@ -129,7 +131,7 @@ function addNewCourse(incomingData, imageFileRef, setIsNotesModalOpen, setIsAddB
 				const newCourseId = e?.id;
 
 				const docRef = doc(database, 'All_Courses', newCourseId);
-				updateDoc(docRef, { courseId: newCourseId })
+				updateDoc(docRef, { courseId: newCourseId, courseThumbnail: photoNotAvailable })
 					.then(() => {
 						console.log('Course added Successfully');
 						setIsNotesModalOpen(false);
