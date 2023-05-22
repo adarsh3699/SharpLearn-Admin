@@ -136,15 +136,18 @@ function ModalWrapper({
 							className="demoVideoLinkInput"
 							name="demoVideo"
 							required={true}
+							autoComplete="off"
 							value={OpenCourse?.demoVideo || ''}
 							onChange={handleCourseInputChange}
 						/>
 						<br />
 						<TextField
+							label="Course Link"
 							className="courseLinkInput"
-							name="courseLink"
 							placeholder="Course Link"
-							required={true}
+							name="courseLink"
+							required
+							autoComplete="off"
 							value={OpenCourse?.courseLink || ''}
 							onChange={handleCourseInputChange}
 						/>
