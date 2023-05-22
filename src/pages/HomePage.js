@@ -68,7 +68,13 @@ function HomePage() {
 		(id) => {
 			if (OpenCourse?.courseId) {
 				setIsConfirmationDialogOpen(false);
-				deleteData(OpenCourse?.courseId, OpenCourse?.courseType, setIsNotesModalOpen, handleMsgShown, handleMsgShown);
+				deleteData(
+					OpenCourse?.courseId,
+					OpenCourse?.courseType,
+					setIsNotesModalOpen,
+					handleMsgShown,
+					handleMsgShown
+				);
 			} else {
 				handleMsgShown('Something went wrong.', 'error');
 			}
@@ -91,7 +97,7 @@ function HomePage() {
 	return (
 		<div>
 			<NavBar handleModalToggle={handleModalToggle} />
-			<div className='homePageContainer' component="main">
+			<div className="homePageContainer" component="main">
 				<Toolbar />
 				<Loader isLoading={isGetLoading} />
 				{allCourses.map((item, index) => {

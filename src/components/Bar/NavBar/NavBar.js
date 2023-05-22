@@ -53,10 +53,11 @@ function NavBar({ handleModalToggle }, props) {
 			name: 'Add New Course',
 			isSelected: false,
 			icon: <ShoppingCartOutlinedIcon />,
-			click: () => handleModalToggle('create'),
+			click: () => {
+				return handleModalToggle('create'), handleDrawerToggle();
+			},
 		},
 	]);
-
 
 	const drawer = (
 		<Box sx={{ textAlign: 'center' }}>
@@ -66,7 +67,12 @@ function NavBar({ handleModalToggle }, props) {
 			<Divider />
 			<List>
 				{settingsDrawerMenu.map((item, index) => (
-					<ListItem onClick={handleDrawerToggle} key={index} selected={item.isSelected} disablePadding>
+					<ListItem
+						onClick={item?.click ? item.click : handleDrawerToggle}
+						key={index}
+						selected={item.isSelected}
+						disablePadding
+					>
 						<ListItemButton sx={{ py: 1.7, pl: 4 }}>
 							<ListItemIcon>{item.icon}</ListItemIcon>
 							<ListItemText primary={item.name} />
@@ -94,6 +100,15 @@ function NavBar({ handleModalToggle }, props) {
 					<div className="brandName">
 						<img src={logoSizeM} alt="logo" /> SharpLearn
 					</div>
+					<Button
+						className="phoneAddNewCourse"
+						variant="contained"
+						onClick={() => handleModalToggle('create')}
+						sx={{ px: 1, display: { xs: 'flex', sm: 'none' } }}
+					>
+						Add New Course
+					</Button>
+
 					<Box sx={{ display: { xs: 'none', sm: 'block' } }}>
 						{settingsDrawerMenu.map((item, index) => (
 							<Button

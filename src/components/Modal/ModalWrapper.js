@@ -61,7 +61,7 @@ function ModalWrapper({
 										className="courseTypeInput"
 										name="courseType"
 										value={OpenCourse?.courseType || ''}
-										placeholder='jk'
+										placeholder="Course Type"
 										onChange={handleCourseInputChange}
 									>
 										<MenuItem value="CS-Courses">CS-Courses</MenuItem>
@@ -73,7 +73,6 @@ function ModalWrapper({
 										<MenuItem value="English Courses">English Courses</MenuItem>
 									</Select>
 									<br />
-
 								</>
 							)}
 							<TextField
@@ -85,7 +84,8 @@ function ModalWrapper({
 								autoComplete="off"
 								value={OpenCourse?.courseName || ''}
 								onChange={handleCourseInputChange}
-							/> <br />
+							/>{' '}
+							<br />
 							<TextField
 								type="number"
 								label="ORG Price"
@@ -96,7 +96,8 @@ function ModalWrapper({
 								autoComplete="off"
 								value={OpenCourse?.courseORGPrice || ''}
 								onChange={handleCourseInputChange}
-							/><br />
+							/>
+							<br />
 							<TextField
 								type="number"
 								label="Discounted Price"
@@ -107,7 +108,8 @@ function ModalWrapper({
 								autoComplete="off"
 								value={OpenCourse?.courseDiscountedPrice || ''}
 								onChange={handleCourseInputChange}
-							/><br />
+							/>
+							<br />
 							<input
 								type="file"
 								className="courseThumbnailInput"
@@ -120,7 +122,6 @@ function ModalWrapper({
 						</div>
 					</div>
 					<div className="courseDetailsInputArea">
-
 						<textarea
 							className="aboutCourseInput"
 							placeholder="About Course"

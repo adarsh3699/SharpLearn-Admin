@@ -66,8 +66,17 @@ function getUserAllNoteData(setAllCourses, setIsGetLoading, handleMsgShown) {
 
 // //Add Notes
 function addNewCourse(incomingData, imageFileRef, setIsNotesModalOpen, setIsAddBtnLoading, handleMsgShown) {
-	const { courseName, aboutCourse, courseType, courseORGPrice, courseDiscountedPrice, demoVideo, courseLink } = incomingData;
-	if (!courseName || !aboutCourse || !courseType || !courseORGPrice || !courseDiscountedPrice || !demoVideo || !courseLink) {
+	const { courseName, aboutCourse, courseType, courseORGPrice, courseDiscountedPrice, demoVideo, courseLink } =
+		incomingData;
+	if (
+		!courseName ||
+		!aboutCourse ||
+		!courseType ||
+		!courseORGPrice ||
+		!courseDiscountedPrice ||
+		!demoVideo ||
+		!courseLink
+	) {
 		handleMsgShown('Please Provide all details', 'error');
 		console.log('Please Provide all details');
 		return;
@@ -78,9 +87,6 @@ function addNewCourse(incomingData, imageFileRef, setIsNotesModalOpen, setIsAddB
 			.then((e) => {
 				const newCourseId = e?.id;
 				const desertRef = ref(storage, courseType + '/' + newCourseId + '_' + courseType + '_thumbnail');
-
-
-
 
 				uploadBytesResumable(desertRef, imageFileRef)
 					.then((snapshot) => {
@@ -157,12 +163,14 @@ function deleteData(courseId, courseType, setIsNotesModalOpen, setMsg, handleMsg
 		.then((e) => {
 			const desertRef = ref(storage, courseType + '/' + courseId + '_' + courseType + '_thumbnail');
 			setIsNotesModalOpen(false);
-			deleteObject(desertRef).then(() => {
-				console.log('File deleted successfully');
-			}).catch((err) => {
-				console.log(err.message);
-				setMsg(err.code);
-			});
+			deleteObject(desertRef)
+				.then(() => {
+					console.log('File deleted successfully');
+				})
+				.catch((err) => {
+					console.log(err.message);
+					setMsg(err.code);
+				});
 		})
 		.catch((err) => {
 			console.log(err.message);
@@ -172,7 +180,16 @@ function deleteData(courseId, courseType, setIsNotesModalOpen, setMsg, handleMsg
 
 //update course
 function updateCourseDetails(incomingData, imageFileRef, setIsSaveLoading, handleMsgShown) {
-	const { courseId, courseName, courseType, aboutCourse, courseORGPrice, courseDiscountedPrice, demoVideo, courseLink } = incomingData;
+	const {
+		courseId,
+		courseName,
+		courseType,
+		aboutCourse,
+		courseORGPrice,
+		courseDiscountedPrice,
+		demoVideo,
+		courseLink,
+	} = incomingData;
 	if (
 		!courseId ||
 		!courseName ||
@@ -226,7 +243,9 @@ function updateCourseDetails(incomingData, imageFileRef, setIsSaveLoading, handl
 				handleMsgShown(err.code);
 			});
 	} else {
-		let courseThumbnail = incomingData?.courseThumbnail ? incomingData?.courseThumbnail : 'https://firebasestorage.googleapis.com/v0/b/sharplearn-2fe87.appspot.com/o/photoNotAvailable.jpeg?alt=media&token=18505eb6-80ee-4e9a-b81b-8a1a84c6e23d';
+		let courseThumbnail = incomingData?.courseThumbnail
+			? incomingData?.courseThumbnail
+			: 'https://firebasestorage.googleapis.com/v0/b/sharplearn-2fe87.appspot.com/o/photoNotAvailable.jpeg?alt=media&token=18505eb6-80ee-4e9a-b81b-8a1a84c6e23d';
 		updateDoc(docRef, { ...incomingData, courseThumbnail, updatedOn: serverTimestamp() })
 			.then(() => {
 				setIsSaveLoading(false);
