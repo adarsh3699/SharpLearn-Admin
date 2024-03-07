@@ -3,7 +3,8 @@ a {
 }
 
 #loginPage,
-#CreateAccPage {
+#CreateAccPage,
+#ForgetPasswordPage {
 	display: flex;
 	align-items: center;
 	justify-content: center;

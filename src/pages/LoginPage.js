@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { handleUserState, handleLoginForm } from '../firebase/auth';
-// import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Loader from '../components/Loader/Loader';
 
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -89,14 +89,14 @@ function LoginPage() {
 							{msg}{' '}
 						</div>
 						<Loader isLoading={isApiLoading} />
-						{/* <NavLink to="/forget-password" id="forgotPass">
-                            Forgotten Password
-                        </NavLink> */}
+						<NavLink to="/forget-password" id="forgotPass">
+							Forgotten Password
+						</NavLink>
 
-						{/* <hr /> */}
-						{/* <a href="/register">
+						<hr />
+						<NavLink to="/register">
 							<div id="createAcc">Create New Account</div>
-						</a> */}
+						</NavLink>
 					</div>
 				</div>
 			)}
